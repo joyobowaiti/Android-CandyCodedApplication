@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -33,6 +34,19 @@ public class InfoActivity extends AppCompatActivity {
             startActivity(mapIntent);
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        createShareIntent();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void createShareIntent() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "SHARE_DESCRIPTION + mCandyImageUrl + HASHTAG_CANDYCODED");
+        startActivity(shareIntent);
     }
 
     public void createPhoneIntent(View view) {
